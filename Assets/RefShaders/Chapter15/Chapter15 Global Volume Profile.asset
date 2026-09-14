@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6952400138992248521
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: FogWithNoiseVolumeComponent
+  m_EditorClassIdentifier: Assembly-CSharp::FogWithNoiseVolumeComponent
+  active: 1
+  fogDensity:
+    m_OverrideState: 0
+    m_Value: 0.42
+  fogColor:
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+  fogStart:
+    m_OverrideState: 0
+    m_Value: 0
+  fogEnd:
+    m_OverrideState: 0
+    m_Value: 5
+  noiseTexture:
+    m_OverrideState: 0
+    m_Value: {fileID: 2800000, guid: 47cdda17bb08a47b0a50675cbb83cfa2, type: 3}
+    dimension: 1
+  fogXSpeed:
+    m_OverrideState: 0
+    m_Value: 0.1
+  fogYSpeed:
+    m_OverrideState: 0
+    m_Value: 0.1
+  noiseAmount:
+    m_OverrideState: 0
+    m_Value: 1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
+  m_Name: Chapter15 Global Volume Profile
+  m_EditorClassIdentifier: 
+  components:
+  - {fileID: -6952400138992248521}
