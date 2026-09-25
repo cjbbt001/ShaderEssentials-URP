@@ -38,6 +38,28 @@ MonoBehaviour:
   blurAmount:
     m_OverrideState: 0
     m_Value: 0.9
+--- !u!114 &-3372016964144845879
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: ColorAdjustmentVolume
+  m_EditorClassIdentifier: Assembly-CSharp::ColorAdjustmentVolume
+  active: 1
+  brightness:
+    m_OverrideState: 1
+    m_Value: 0.83
+  saturation:
+    m_OverrideState: 1
+    m_Value: 1.34
+  contrast:
+    m_OverrideState: 1
+    m_Value: 1.008
 --- !u!114 &-1060754817477298903
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -75,7 +97,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
   m_Name: Chapter12 Volume Profile
   m_EditorClassIdentifier: 
-  components: []
+  components:
+  - {fileID: 3369422235015825590}
+  - {fileID: -3372016964144845879}
+--- !u!114 &3369422235015825590
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: BriSatConVolumeComponent
+  m_EditorClassIdentifier: Assembly-CSharp::BriSatConVolumeComponent
+  active: 0
+  Brightness:
+    m_OverrideState: 1
+    m_Value: 1.79
+  Saturation:
+    m_OverrideState: 1
+    m_Value: 0.844
+  Contrast:
+    m_OverrideState: 1
+    m_Value: 1
 --- !u!114 &3399068802113858604
 MonoBehaviour:
   m_ObjectHideFlags: 3

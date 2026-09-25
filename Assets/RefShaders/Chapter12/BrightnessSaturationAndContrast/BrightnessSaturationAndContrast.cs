@@ -96,6 +96,10 @@ public class BriSatConRenderPass : ScriptableRenderPass
         this.material = material;
         this.defaultSettings = defaultSettings;
         this.copyMaterial = copyMaterial;
+
+        // URP 的 Intermediate Texture 为 Auto 时，只有声明需要中间纹理的 Pass 才会让相机颜色保留在可采样的 RT 上。
+        // 否则 activeColorTexture 就是 BackBuffer，下面会直接 return，后处理完全不执行。
+        requiresIntermediateTexture = true;
     }
 
     private void UpdateEffectSettings()
