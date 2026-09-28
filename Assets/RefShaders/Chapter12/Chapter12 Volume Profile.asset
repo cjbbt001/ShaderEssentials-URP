@@ -1,5 +1,27 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7628956094646792757
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: ColorAdjustmentVolume
+  m_EditorClassIdentifier: Assembly-CSharp::ColorAdjustmentVolume
+  active: 1
+  brightness:
+    m_OverrideState: 1
+    m_Value: 1.18
+  saturation:
+    m_OverrideState: 1
+    m_Value: 1.48
+  contrast:
+    m_OverrideState: 1
+    m_Value: 1.01
 --- !u!114 &-7563020950408428706
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -13,15 +35,79 @@ MonoBehaviour:
   m_Name: GaussianBlurVolumeComponent
   m_EditorClassIdentifier: Assembly-CSharp::GaussianBlurVolumeComponent
   active: 1
+  <displayName>k__BackingField: 
   blurSize:
+    <fieldHash>k__BackingField: 886284128
     m_OverrideState: 0
     m_Value: 3
   iteration:
+    <fieldHash>k__BackingField: 1604335304
     m_OverrideState: 0
     m_Value: 8
   downSample:
+    <fieldHash>k__BackingField: -775828856
     m_OverrideState: 0
     m_Value: 2
+--- !u!114 &-7287521096634334669
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: MotionBlurVolume
+  m_EditorClassIdentifier: Assembly-CSharp::MotionBlurVolume
+  active: 0
+  blurAmount:
+    m_OverrideState: 1
+    m_Value: 0.414
+--- !u!114 &-7104216010311806588
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: EdgeDetectionVolume
+  m_EditorClassIdentifier: Assembly-CSharp::EdgeDetectionVolume
+  active: 1
+  edgeOnly:
+    m_OverrideState: 0
+    m_Value: 1
+  edgeColor:
+    m_OverrideState: 0
+    m_Value: {r: 0, g: 0, b: 0, a: 1}
+  backgroundColor:
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &-7027217164605651566
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: TestVolume
+  m_EditorClassIdentifier: Assembly-CSharp::TestVolume
+  active: 1
+  brightness:
+    m_OverrideState: 1
+    m_Value: 0.71
+  saturation:
+    m_OverrideState: 1
+    m_Value: 1.26
+  contrast:
+    m_OverrideState: 1
+    m_Value: 1.01
 --- !u!114 &-5546087899294241040
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -35,9 +121,61 @@ MonoBehaviour:
   m_Name: MotionBlurVolumeComponent
   m_EditorClassIdentifier: Assembly-CSharp::MotionBlurVolumeComponent
   active: 1
+  <displayName>k__BackingField: 
   blurAmount:
+    <fieldHash>k__BackingField: -895952704
     m_OverrideState: 0
     m_Value: 0.9
+--- !u!114 &-3876812142449898485
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: EdgeDetectionVolume
+  m_EditorClassIdentifier: Assembly-CSharp::EdgeDetectionVolume
+  active: 1
+  edgeOnly:
+    m_OverrideState: 1
+    m_Value: 0
+  edgeColor:
+    m_OverrideState: 1
+    m_Value: {r: 0, g: 0, b: 0, a: 1}
+  backgroundColor:
+    m_OverrideState: 1
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &-3424528145425398723
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: BloomVolume
+  m_EditorClassIdentifier: Assembly-CSharp::BloomVolume
+  active: 0
+  luminanceThreshold:
+    m_OverrideState: 1
+    m_Value: 0.27
+  blurSize:
+    m_OverrideState: 1
+    m_Value: 4.08
+  iterations:
+    m_OverrideState: 1
+    m_Value: 2
+  downSample:
+    m_OverrideState: 1
+    m_Value: 4
+  intensity:
+    m_OverrideState: 1
+    m_Value: 1.99
 --- !u!114 &-3372016964144845879
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -60,6 +198,50 @@ MonoBehaviour:
   contrast:
     m_OverrideState: 1
     m_Value: 1.008
+--- !u!114 &-3332204254207653349
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: ColorAdjustmentVolume
+  m_EditorClassIdentifier: Assembly-CSharp::ColorAdjustmentVolume
+  active: 1
+  brightness:
+    m_OverrideState: 1
+    m_Value: 0.67
+  saturation:
+    m_OverrideState: 1
+    m_Value: 1.24
+  contrast:
+    m_OverrideState: 1
+    m_Value: 1.01
+--- !u!114 &-2940995195214755972
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: GaussianBlurVolume
+  m_EditorClassIdentifier: Assembly-CSharp::GaussianBlurVolume
+  active: 1
+  blurSize:
+    m_OverrideState: 1
+    m_Value: 0
+  iterations:
+    m_OverrideState: 0
+    m_Value: 2
+  downSample:
+    m_OverrideState: 0
+    m_Value: 2
 --- !u!114 &-1060754817477298903
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -70,8 +252,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: BloomVolumeComponent
-  m_EditorClassIdentifier: Assembly-CSharp::BloomVolumeComponent
+  m_Name: RefBloomVolumeComponent
+  m_EditorClassIdentifier: Assembly-CSharp::RefBloomVolumeComponent
   active: 1
   luminanceThreshold:
     m_OverrideState: 1
@@ -98,8 +280,10 @@ MonoBehaviour:
   m_Name: Chapter12 Volume Profile
   m_EditorClassIdentifier: 
   components:
-  - {fileID: 3369422235015825590}
-  - {fileID: -3372016964144845879}
+  - {fileID: -7628956094646792757}
+  - {fileID: 7211082140194736039}
+  - {fileID: -3424528145425398723}
+  - {fileID: -7287521096634334669}
 --- !u!114 &3369422235015825590
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -135,12 +319,68 @@ MonoBehaviour:
   m_Name: EdgeDetectionVolumeComponent
   m_EditorClassIdentifier: Assembly-CSharp::EdgeDetectionVolumeComponent
   active: 1
+  <displayName>k__BackingField: 
   edgeOnly:
+    <fieldHash>k__BackingField: -771012824
     m_OverrideState: 1
     m_Value: 1
   edgeColor:
+    <fieldHash>k__BackingField: -531662432
     m_OverrideState: 1
-    m_Value: {r: 1, g: 1, b: 1, a: 1}
+    m_Value:
+      r: 1
+      g: 1
+      b: 1
+      a: 1
   backgroundColor:
+    <fieldHash>k__BackingField: -292312040
     m_OverrideState: 1
-    m_Value: {r: 0, g: 0, b: 0, a: 1}
+    m_Value:
+      r: 0
+      g: 0
+      b: 0
+      a: 1
+--- !u!114 &4231846874604147237
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: GaussianBlurVolume
+  m_EditorClassIdentifier: Assembly-CSharp::GaussianBlurVolume
+  active: 1
+  blurSize:
+    m_OverrideState: 1
+    m_Value: 0
+  iterations:
+    m_OverrideState: 1
+    m_Value: 2
+  downSample:
+    m_OverrideState: 1
+    m_Value: 2
+--- !u!114 &7211082140194736039
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: GaussianBlurVolume
+  m_EditorClassIdentifier: Assembly-CSharp::GaussianBlurVolume
+  active: 1
+  blurSize:
+    m_OverrideState: 1
+    m_Value: 0
+  iterations:
+    m_OverrideState: 0
+    m_Value: 2
+  downSample:
+    m_OverrideState: 0
+    m_Value: 2

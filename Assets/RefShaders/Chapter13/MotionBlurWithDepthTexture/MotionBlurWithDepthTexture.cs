@@ -8,15 +8,15 @@ using UnityEngine.Rendering.Universal;
 #endregion
 
 #region RendererFeature
-public class MotionBlurWithDepthTexture : ScriptableRendererFeature
+public class RefMotionBlurWithDepthTexture : ScriptableRendererFeature
 {
-    [SerializeField] private MotionBlurWithDepthTextureSettings defaultSettings;
+    [SerializeField] private RefMotionBlurWithDepthTextureSettings defaultSettings;
     [SerializeField] private Shader shader;
     [SerializeField] private RenderPassEvent renderPassEvent = RenderPassEvent.BeforeRenderingPostProcessing;
 
     private Material material;
     private Material copyMaterial;
-    private MotionBlurWithDepthTextureRenderPass motionBlurRenderPass;
+    private RefMotionBlurWithDepthTextureRenderPass motionBlurRenderPass;
 
     public override void Create()
     {
@@ -33,7 +33,7 @@ public class MotionBlurWithDepthTexture : ScriptableRendererFeature
         else
             Debug.LogError("Failed to find Hidden/Universal/Blit shader!");
 
-        motionBlurRenderPass = new MotionBlurWithDepthTextureRenderPass(material, copyMaterial, defaultSettings);
+        motionBlurRenderPass = new RefMotionBlurWithDepthTextureRenderPass(material, copyMaterial, defaultSettings);
         motionBlurRenderPass.renderPassEvent = renderPassEvent;
     }
 
@@ -71,19 +71,19 @@ public class MotionBlurWithDepthTexture : ScriptableRendererFeature
 #region RenderPass
 
 [Serializable]
-public class MotionBlurWithDepthTextureSettings
+public class RefMotionBlurWithDepthTextureSettings
 {
     [Range(0, 5.0f)] public float blurSize = 1.0f;
 }
 
-public class MotionBlurWithDepthTextureRenderPass : ScriptableRenderPass
+public class RefMotionBlurWithDepthTextureRenderPass : ScriptableRenderPass
 {
     private static readonly int blurSizeID = Shader.PropertyToID("_BlurSize");
     private static readonly int currentViewProjectionInverseMatrixID = Shader.PropertyToID("_CurrentViewProjectionInverseMatrix");
     private static readonly int previousViewProjectionMatrixID = Shader.PropertyToID("_PreviousViewProjectionMatrix");
     private const string textureName = "MotionBlurTempTexture";
 
-    private MotionBlurWithDepthTextureSettings defaultSettings;
+    private RefMotionBlurWithDepthTextureSettings defaultSettings;
     private Material material;
     private Material copyMaterial;
 
@@ -92,7 +92,7 @@ public class MotionBlurWithDepthTextureRenderPass : ScriptableRenderPass
 
     private TextureDesc tempTextureDescriptor;
 
-    public MotionBlurWithDepthTextureRenderPass(Material material, Material copyMaterial, MotionBlurWithDepthTextureSettings defaultSettings)
+    public RefMotionBlurWithDepthTextureRenderPass(Material material, Material copyMaterial, RefMotionBlurWithDepthTextureSettings defaultSettings)
     {
         this.material = material;
         this.defaultSettings = defaultSettings;
@@ -103,7 +103,7 @@ public class MotionBlurWithDepthTextureRenderPass : ScriptableRenderPass
     {
         if (material == null) return;
 
-        var volumeComponent = VolumeManager.instance.stack.GetComponent<MotionBlurWithDepthTextureVolumeComponent>();
+        var volumeComponent = VolumeManager.instance.stack.GetComponent<RefMotionBlurWithDepthTextureVolumeComponent>();
         float blurSize = volumeComponent.blurSize.overrideState ? volumeComponent.blurSize.value : defaultSettings.blurSize;
 
         material.SetFloat(blurSizeID, blurSize);
@@ -158,8 +158,8 @@ public class MotionBlurWithDepthTextureRenderPass : ScriptableRenderPass
 #endregion RenderPass
 
 #region VolumeComponent
-[Serializable, VolumeComponentMenu("My Post-processing/MotionBlurWithDepthTexture")]
-public class MotionBlurWithDepthTextureVolumeComponent : VolumeComponent
+[Serializable, VolumeComponentMenu("My Post-processing/RefMotionBlurWithDepthTexture")]
+public class RefMotionBlurWithDepthTextureVolumeComponent : VolumeComponent
 {
     public ClampedFloatParameter blurSize = new ClampedFloatParameter(1f, 0f, 5.0f);
 }

@@ -8,15 +8,15 @@ using UnityEngine.Rendering.Universal;
 #endregion
 
 #region RendererFeature
-public class EdgeDetection : ScriptableRendererFeature
+public class RefEdgeDetection : ScriptableRendererFeature
 {
-    [SerializeField] private EdgeDetectionSettings defaultSettings;
+    [SerializeField] private RefEdgeDetectionSettings defaultSettings;
     [SerializeField] private Shader shader;
     [SerializeField] private RenderPassEvent renderPassEvent = RenderPassEvent.BeforeRenderingPostProcessing;
 
     private Material material;
     private Material copyMaterial;
-    private EdgeDetectionRenderPass edgeDetectionRenderPass;
+    private RefEdgeDetectionRenderPass edgeDetectionRenderPass;
 
     public override void Create()
     {
@@ -33,7 +33,7 @@ public class EdgeDetection : ScriptableRendererFeature
         else
             Debug.LogError("Failed to find Hidden/Universal/Blit shader!");
 
-        edgeDetectionRenderPass = new EdgeDetectionRenderPass(material, copyMaterial, defaultSettings);
+        edgeDetectionRenderPass = new RefEdgeDetectionRenderPass(material, copyMaterial, defaultSettings);
         edgeDetectionRenderPass.renderPassEvent = renderPassEvent;
     }
 
@@ -70,27 +70,27 @@ public class EdgeDetection : ScriptableRendererFeature
 #region RenderPass
 
 [Serializable]
-public class EdgeDetectionSettings
+public class RefEdgeDetectionSettings
 {
     [Range(0, 1.0f)] public float edgeOnly;
     public Color edgeColor = Color.black;
     public Color backgroundColor = Color.white;
 }
 
-public class EdgeDetectionRenderPass : ScriptableRenderPass
+public class RefEdgeDetectionRenderPass : ScriptableRenderPass
 {
     private static readonly int edgeOnlyID = Shader.PropertyToID("_EdgeOnly");
     private static readonly int edgeColorID = Shader.PropertyToID("_EdgeColor");
     private static readonly int backgroundColorID = Shader.PropertyToID("_BackgroundColor");
     private const string textureName = "EdgeDetectionTexture";
 
-    private EdgeDetectionSettings defaultSettings;
+    private RefEdgeDetectionSettings defaultSettings;
     private Material material;
     private Material copyMaterial;
 
     private TextureDesc edgeDetectionTextureDescriptor;
 
-    public EdgeDetectionRenderPass(Material material, Material copyMaterial, EdgeDetectionSettings defaultSettings)
+    public RefEdgeDetectionRenderPass(Material material, Material copyMaterial, RefEdgeDetectionSettings defaultSettings)
     {
         this.material = material;
         this.defaultSettings = defaultSettings;
@@ -101,7 +101,7 @@ public class EdgeDetectionRenderPass : ScriptableRenderPass
     {
         if (material == null) return;
 
-        var volumeComponent = VolumeManager.instance.stack.GetComponent<EdgeDetectionVolumeComponent>();
+        var volumeComponent = VolumeManager.instance.stack.GetComponent<RefEdgeDetectionVolumeComponent>();
         float edgeOnly = volumeComponent.edgeOnly.overrideState ? volumeComponent.edgeOnly.value : defaultSettings.edgeOnly;
         Color edgeColor = volumeComponent.edgeColor.overrideState ? volumeComponent.edgeColor.value : defaultSettings.edgeColor;
         Color backgroundColor = volumeComponent.backgroundColor.overrideState ? volumeComponent.backgroundColor.value : defaultSettings.backgroundColor;
@@ -152,8 +152,8 @@ public class EdgeDetectionRenderPass : ScriptableRenderPass
 #endregion RenderPass
 
 #region VolumeComponent
-[Serializable, VolumeComponentMenu("My Post-processing/EdgeDetection")]
-public class EdgeDetectionVolumeComponent : VolumeComponent
+[Serializable, VolumeComponentMenu("My Post-processing/RefEdgeDetection")]
+public class RefEdgeDetectionVolumeComponent : VolumeComponent
 {
     public ClampedFloatParameter edgeOnly = new ClampedFloatParameter(1f, 0, 1f);
     public ColorParameter edgeColor = new ColorParameter(Color.black, true, false, true);

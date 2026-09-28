@@ -8,15 +8,15 @@ using UnityEngine.Rendering.Universal;
 #endregion
 
 #region RendererFeature
-public class GaussianBlur : ScriptableRendererFeature
+public class RefGaussianBlur : ScriptableRendererFeature
 {
-    [SerializeField] private GaussianBlurSettings defaultSettings;
+    [SerializeField] private RefGaussianBlurSettings defaultSettings;
     [SerializeField] private Shader shader;
     [SerializeField] private RenderPassEvent renderPassEvent = RenderPassEvent.BeforeRenderingPostProcessing;
 
     private Material material;
     private Material copyMaterial;
-    private GaussianBlurRenderPass gaussianBlurRenderPass;
+    private RefGaussianBlurRenderPass gaussianBlurRenderPass;
 
     public override void Create()
     {
@@ -34,7 +34,7 @@ public class GaussianBlur : ScriptableRendererFeature
         else
             Debug.LogError("Failed to find Blit shader for down/upsampling!");
 
-        gaussianBlurRenderPass = new GaussianBlurRenderPass(material, copyMaterial, defaultSettings);
+        gaussianBlurRenderPass = new RefGaussianBlurRenderPass(material, copyMaterial, defaultSettings);
         gaussianBlurRenderPass.renderPassEvent = renderPassEvent;
     }
 
@@ -69,21 +69,21 @@ public class GaussianBlur : ScriptableRendererFeature
 #region RenderPass
 
 [Serializable]
-public class GaussianBlurSettings
+public class RefGaussianBlurSettings
 {
     [Range(0, 3.0f)] public float blurSize = 1.0f;
 }
 
-public class GaussianBlurRenderPass : ScriptableRenderPass
+public class RefGaussianBlurRenderPass : ScriptableRenderPass
 {
     private static readonly int blurSizeID = Shader.PropertyToID("_BlurSize");
     private const string downsampledTexName = "_DownsampledTexture";
 
-    private GaussianBlurSettings defaultSettings;
+    private RefGaussianBlurSettings defaultSettings;
     private Material material;
     private Material copyMaterial;   // 用于降采样和上采样
 
-    public GaussianBlurRenderPass(Material material, Material copyMaterial, GaussianBlurSettings defaultSettings)
+    public RefGaussianBlurRenderPass(Material material, Material copyMaterial, RefGaussianBlurSettings defaultSettings)
     {
         this.material = material;
         this.copyMaterial = copyMaterial;
@@ -94,7 +94,7 @@ public class GaussianBlurRenderPass : ScriptableRenderPass
     {
         if (material == null) return;
 
-        var volumeComponent = VolumeManager.instance.stack.GetComponent<GaussianBlurVolumeComponent>();
+        var volumeComponent = VolumeManager.instance.stack.GetComponent<RefGaussianBlurVolumeComponent>();
         float blurSize = volumeComponent != null && volumeComponent.blurSize.overrideState
             ? volumeComponent.blurSize.value
             : defaultSettings.blurSize;
@@ -111,7 +111,7 @@ public class GaussianBlurRenderPass : ScriptableRenderPass
 
         TextureHandle srcCamColor = resourceData.activeColorTexture;
 
-        var volumeComponent = VolumeManager.instance.stack.GetComponent<GaussianBlurVolumeComponent>();
+        var volumeComponent = VolumeManager.instance.stack.GetComponent<RefGaussianBlurVolumeComponent>();
         int iteration = volumeComponent?.iteration.overrideState == true ? volumeComponent.iteration.value : 1;
         int downSampleFactor = volumeComponent?.downSample.overrideState == true ? volumeComponent.downSample.value : 1;
 
@@ -166,8 +166,8 @@ public class GaussianBlurRenderPass : ScriptableRenderPass
 #endregion RenderPass
 
 #region VolumeComponent
-[Serializable, VolumeComponentMenu("My Post-processing/GaussianBlur")]
-public class GaussianBlurVolumeComponent : VolumeComponent
+[Serializable, VolumeComponentMenu("My Post-processing/RefGaussianBlur")]
+public class RefGaussianBlurVolumeComponent : VolumeComponent
 {
     public ClampedFloatParameter blurSize = new ClampedFloatParameter(1f, 0, 3f);
     public ClampedIntParameter iteration = new ClampedIntParameter(2, 1, 8);

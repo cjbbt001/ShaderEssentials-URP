@@ -1,6 +1,21 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6688166905575602526
+--- !u!114 &-7770026795891615475
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e301c6d4fa05f8c1d2e3f4051627384, type: 3}
+  m_Name: Bloom
+  m_EditorClassIdentifier: Assembly-CSharp::Bloom
+  m_Active: 0
+  shader: {fileID: 4800000, guid: 8d2f0b5c3e904f7b0c1d2e3f40516273, type: 3}
+  injectionPoint: 550
+--- !u!114 &-6985338475227897491
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14,6 +29,66 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ColorAdjustment
   m_Active: 1
   shader: {fileID: 4800000, guid: 2121966d476049a2a4039ee5b0b8b3d9, type: 3}
+  injectionPoint: 550
+--- !u!114 &-5301074131166805210
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f25e994a6b11d4f4d9b2a87a4814de2c, type: 3}
+  m_Name: MotionBlur
+  m_EditorClassIdentifier: Assembly-CSharp::MotionBlur
+  m_Active: 0
+  shader: {fileID: 4800000, guid: 7ac9a7f7e9b344d48be6e0d215cc1d19, type: 3}
+  injectionPoint: 550
+--- !u!114 &-1408566879255556154
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9dca82476fe2334caf20de157038f02, type: 3}
+  m_Name: EdgeDetection
+  m_EditorClassIdentifier: Assembly-CSharp::EdgeDetection
+  m_Active: 0
+  shader: {fileID: 4800000, guid: 1cc61b80ca0887842b08b45241aa50fc, type: 3}
+  injectionPoint: 550
+--- !u!114 &-976554991434198234
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 988d3a3e5dd9768468f50e63df0586eb, type: 3}
+  m_Name: MotionBlurWithDepthTexture
+  m_EditorClassIdentifier: Assembly-CSharp::MotionBlurWithDepthTexture
+  m_Active: 0
+  shader: {fileID: 4800000, guid: 789ec04c07cc2e74eb467b82d2401fc9, type: 3}
+  injectionPoint: 550
+--- !u!114 &-807854039331875364
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c75ae654410c8ef4ab252484b6091386, type: 3}
+  m_Name: EdgeDetectNormalsAndDepth
+  m_EditorClassIdentifier: Assembly-CSharp::EdgeDetectNormalsAndDepth
+  m_Active: 0
+  shader: {fileID: 4800000, guid: ce5e641e09ee46c4eb092a42c9971d93, type: 3}
   injectionPoint: 550
 --- !u!114 &11400000
 MonoBehaviour:
@@ -41,9 +116,15 @@ MonoBehaviour:
     probeVolumeBlendStatesCS: {fileID: 7200000, guid: b9a23f869c4fd45f19c5ada54dd82176, type: 3}
   m_RendererFeatures:
   - {fileID: 7833122117494664109}
-  - {fileID: -6688166905575602526}
-  - {fileID: 6553366943182294167}
-  m_RendererFeatureMap: ad6b866f10d7b46ca286a482a2db2ea3970c2b7b833cf25al
+  - {fileID: -6985338475227897491}
+  - {fileID: 5215913131483837138}
+  - {fileID: -7770026795891615475}
+  - {fileID: -1408566879255556154}
+  - {fileID: -5301074131166805210}
+  - {fileID: -807854039331875364}
+  - {fileID: -976554991434198234}
+  - {fileID: 1797236457099809232}
+  m_RendererFeatureMap: ad6b866f10d7b46c6d212cacaa170f9fd2b263a55ba562480d199de7cb512b94c68f97dfe2c373ec2643cafb29cd6eb6dc55420b08edc9f42613eec7689472f2d0d1d01a0911f118l
   xrSystemData: {fileID: 0}
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   m_AssetVersion: 3
@@ -72,7 +153,7 @@ MonoBehaviour:
   m_AccurateGbufferNormals: 0
   m_IntermediateTextureMode: 0
   m_TileOnlyMode: 0
---- !u!114 &6553366943182294167
+--- !u!114 &1797236457099809232
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -81,16 +162,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbac0dbfde14590408a785a5ab9918e0, type: 3}
-  m_Name: BrightnessSaturationAndContrast
-  m_EditorClassIdentifier: Assembly-CSharp::BrightnessSaturationAndContrast
+  m_Script: {fileID: 11500000, guid: b57fa49e86064954eaa5a66dbe4ce2a4, type: 3}
+  m_Name: FogWithDepthTexture
+  m_EditorClassIdentifier: Assembly-CSharp::FogWithDepthTexture
+  m_Active: 1
+  shader: {fileID: 4800000, guid: ea7a0327d248c8847a4429b7eac77c7b, type: 3}
+  injectionPoint: 550
+--- !u!114 &5215913131483837138
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6a62499389cd9144b5571db002e88de, type: 3}
+  m_Name: GaussianBlur
+  m_EditorClassIdentifier: Assembly-CSharp::GaussianBlur
   m_Active: 0
-  defaultSettings:
-    brightness: 0
-    saturation: 0
-    contrast: 0
-  shader: {fileID: 4800000, guid: 6fc857fa76ebd4f49a25e19f0d10cea4, type: 3}
-  renderPassEvent: 550
+  shader: {fileID: 4800000, guid: 2140099b8d0bd5d49a9b2c8b52fb0753, type: 3}
+  injectionPoint: 550
 --- !u!114 &7833122117494664109
 MonoBehaviour:
   m_ObjectHideFlags: 1

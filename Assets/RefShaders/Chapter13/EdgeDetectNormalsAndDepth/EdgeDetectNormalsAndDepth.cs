@@ -8,15 +8,15 @@ using UnityEngine.Rendering.Universal;
 #endregion
 
 #region RendererFeature
-public class EdgeDetectNormalsAndDepth : ScriptableRendererFeature
+public class RefEdgeDetectNormalsAndDepth : ScriptableRendererFeature
 {
-    [SerializeField] private EdgeDetectNormalsAndDepthSettings defaultSettings;
+    [SerializeField] private RefEdgeDetectNormalsAndDepthSettings defaultSettings;
     [SerializeField] private Shader shader;
     [SerializeField] private RenderPassEvent renderPassEvent = RenderPassEvent.BeforeRenderingPostProcessing;
 
     private Material material;
     private Material copyMaterial;
-    private EdgeDetectNormalsAndDepthRenderPass edgeDetectRenderPass;
+    private RefEdgeDetectNormalsAndDepthRenderPass edgeDetectRenderPass;
 
     public override void Create()
     {
@@ -33,7 +33,7 @@ public class EdgeDetectNormalsAndDepth : ScriptableRendererFeature
         else
             Debug.LogError("Failed to find Hidden/Universal/Blit shader!");
 
-        edgeDetectRenderPass = new EdgeDetectNormalsAndDepthRenderPass(material, copyMaterial, defaultSettings);
+        edgeDetectRenderPass = new RefEdgeDetectNormalsAndDepthRenderPass(material, copyMaterial, defaultSettings);
         edgeDetectRenderPass.renderPassEvent = renderPassEvent;
     }
 
@@ -70,7 +70,7 @@ public class EdgeDetectNormalsAndDepth : ScriptableRendererFeature
 #region RenderPass
 
 [Serializable]
-public class EdgeDetectNormalsAndDepthSettings
+public class RefEdgeDetectNormalsAndDepthSettings
 {
     [Range(0, 1.0f)] public float edgeOnly = 1.0f;
     public Color edgeColor = Color.black;
@@ -79,7 +79,7 @@ public class EdgeDetectNormalsAndDepthSettings
     public Vector4 sensitivity = new Vector4(1, 1, 1, 1);
 }
 
-public class EdgeDetectNormalsAndDepthRenderPass : ScriptableRenderPass
+public class RefEdgeDetectNormalsAndDepthRenderPass : ScriptableRenderPass
 {
     private static readonly int edgeOnlyID = Shader.PropertyToID("_EdgeOnly");
     private static readonly int edgeColorID = Shader.PropertyToID("_EdgeColor");
@@ -88,13 +88,13 @@ public class EdgeDetectNormalsAndDepthRenderPass : ScriptableRenderPass
     private static readonly int sensitivityID = Shader.PropertyToID("_Sensitivity");
     private const string textureName = "EdgeDetectTexture";
 
-    private EdgeDetectNormalsAndDepthSettings defaultSettings;
+    private RefEdgeDetectNormalsAndDepthSettings defaultSettings;
     private Material material;
     private Material copyMaterial;
 
     private TextureDesc edgeDetectTextureDescriptor;
 
-    public EdgeDetectNormalsAndDepthRenderPass(Material material, Material copyMaterial, EdgeDetectNormalsAndDepthSettings defaultSettings)
+    public RefEdgeDetectNormalsAndDepthRenderPass(Material material, Material copyMaterial, RefEdgeDetectNormalsAndDepthSettings defaultSettings)
     {
         this.material = material;
         this.defaultSettings = defaultSettings;
@@ -105,7 +105,7 @@ public class EdgeDetectNormalsAndDepthRenderPass : ScriptableRenderPass
     {
         if (material == null) return;
 
-        var volumeComponent = VolumeManager.instance.stack.GetComponent<EdgeDetectNormalsAndDepthVolumeComponent>();
+        var volumeComponent = VolumeManager.instance.stack.GetComponent<RefEdgeDetectNormalsAndDepthVolumeComponent>();
         float edgeOnly = volumeComponent.EdgeOnly.overrideState ? volumeComponent.EdgeOnly.value : defaultSettings.edgeOnly;
         Color edgeColor = volumeComponent.EdgeColor.overrideState ? volumeComponent.EdgeColor.value : defaultSettings.edgeColor;
         Color backgroundColor = volumeComponent.BackgroundColor.overrideState ? volumeComponent.BackgroundColor.value : defaultSettings.backgroundColor;
@@ -152,8 +152,8 @@ public class EdgeDetectNormalsAndDepthRenderPass : ScriptableRenderPass
 #endregion RenderPass
 
 #region VolumeComponent
-[Serializable, VolumeComponentMenu("My Post-processing/EdgeDetectNormalsAndDepth")]
-public class EdgeDetectNormalsAndDepthVolumeComponent : VolumeComponent
+[Serializable, VolumeComponentMenu("My Post-processing/RefEdgeDetectNormalsAndDepth")]
+public class RefEdgeDetectNormalsAndDepthVolumeComponent : VolumeComponent
 {
     public ClampedFloatParameter EdgeOnly = new ClampedFloatParameter(1f, 0, 1f);
     public ColorParameter EdgeColor = new ColorParameter(Color.black);

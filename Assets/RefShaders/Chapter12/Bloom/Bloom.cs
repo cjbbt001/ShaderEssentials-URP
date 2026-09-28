@@ -8,15 +8,15 @@ using UnityEngine.Rendering.Universal;
 #endregion
 
 #region RendererFeature
-public class Bloom : ScriptableRendererFeature
+public class RefBloom : ScriptableRendererFeature
 {
-    [SerializeField] private BloomSettings defaultSettings;
+    [SerializeField] private RefBloomSettings defaultSettings;
     [SerializeField] private Shader shader;
     [SerializeField] private RenderPassEvent renderPassEvent = RenderPassEvent.BeforeRenderingPostProcessing;
 
     private Material material;
     private Material copyMaterial;
-    private BloomRenderPass bloomRenderPass;
+    private RefBloomRenderPass bloomRenderPass;
 
     public override void Create()
     {
@@ -33,7 +33,7 @@ public class Bloom : ScriptableRendererFeature
         else
             Debug.LogError("Failed to find Hidden/Universal/Blit shader!");
 
-        bloomRenderPass = new BloomRenderPass(material, copyMaterial, defaultSettings);
+        bloomRenderPass = new RefBloomRenderPass(material, copyMaterial, defaultSettings);
         bloomRenderPass.renderPassEvent = renderPassEvent;
     }
 
@@ -67,14 +67,14 @@ public class Bloom : ScriptableRendererFeature
 #region RenderPass
 
 [Serializable]
-public class BloomSettings
+public class RefBloomSettings
 {
     [Range(0, 2f)] public float luminanceThreshold = 0.5f;
     [Range(0, 5f)] public float blurSize = 1.0f;
     [Range(1, 8)] public int iterations = 1;
 }
 
-public class BloomRenderPass : ScriptableRenderPass
+public class RefBloomRenderPass : ScriptableRenderPass
 {
     private static readonly int luminanceThresholdID = Shader.PropertyToID("_LuminanceThreshold");
     private static readonly int blurSizeID = Shader.PropertyToID("_BlurSize");
@@ -88,7 +88,7 @@ public class BloomRenderPass : ScriptableRenderPass
 
     private int iterationsCount = 1;
 
-    private BloomSettings defaultSettings;
+    private RefBloomSettings defaultSettings;
     private Material material;
     private Material copyMaterial;
 
@@ -100,7 +100,7 @@ public class BloomRenderPass : ScriptableRenderPass
         public int passIndex;
     }
 
-    public BloomRenderPass(Material material, Material copyMaterial, BloomSettings defaultSettings)
+    public RefBloomRenderPass(Material material, Material copyMaterial, RefBloomSettings defaultSettings)
     {
         this.material = material;
         this.defaultSettings = defaultSettings;
@@ -111,7 +111,7 @@ public class BloomRenderPass : ScriptableRenderPass
     {
         if (material == null) return;
 
-        var volumeComponent = VolumeManager.instance.stack.GetComponent<BloomVolumeComponent>();
+        var volumeComponent = VolumeManager.instance.stack.GetComponent<RefBloomVolumeComponent>();
         float luminanceThreshold = volumeComponent.luminanceThreshold.overrideState ? volumeComponent.luminanceThreshold.value : defaultSettings.luminanceThreshold;
         float blurSize = volumeComponent.blurSize.overrideState ? volumeComponent.blurSize.value : defaultSettings.blurSize;
         float bloomIntensity = volumeComponent.bloomIntensity.overrideState ? volumeComponent.bloomIntensity.value : 1.0f;
@@ -186,7 +186,7 @@ public class BloomRenderPass : ScriptableRenderPass
 
 #region VolumeComponent
 [Serializable, VolumeComponentMenu("My Post-processing/Bloom")]
-public class BloomVolumeComponent : VolumeComponent
+public class RefBloomVolumeComponent : VolumeComponent
 {
     public ClampedFloatParameter luminanceThreshold = new ClampedFloatParameter(0.5f, 0f, 2f);
     public ClampedFloatParameter blurSize = new ClampedFloatParameter(1f, 0f, 5f);

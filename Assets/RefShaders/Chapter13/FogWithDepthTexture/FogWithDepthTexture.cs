@@ -8,15 +8,15 @@ using UnityEngine.Rendering.Universal;
 #endregion
 
 #region RendererFeature
-public class FogWithDepthTexture : ScriptableRendererFeature
+public class RefFogWithDepthTexture : ScriptableRendererFeature
 {
-    [SerializeField] private FogWithDepthTextureSettings defaultSettings;
+    [SerializeField] private RefFogWithDepthTextureSettings defaultSettings;
     [SerializeField] private Shader shader;
     [SerializeField] private RenderPassEvent renderPassEvent = RenderPassEvent.BeforeRenderingPostProcessing;
 
     private Material material;
     private Material copyMaterial;
-    private FogWithDepthTextureRenderPass fogRenderPass;
+    private RefFogWithDepthTextureRenderPass fogRenderPass;
 
     public override void Create()
     {
@@ -33,7 +33,7 @@ public class FogWithDepthTexture : ScriptableRendererFeature
         else
             Debug.LogError("Failed to find Hidden/Universal/Blit shader!");
 
-        fogRenderPass = new FogWithDepthTextureRenderPass(material, copyMaterial, defaultSettings);
+        fogRenderPass = new RefFogWithDepthTextureRenderPass(material, copyMaterial, defaultSettings);
         fogRenderPass.renderPassEvent = renderPassEvent;
     }
 
@@ -71,7 +71,7 @@ public class FogWithDepthTexture : ScriptableRendererFeature
 #region RenderPass
 
 [Serializable]
-public class FogWithDepthTextureSettings
+public class RefFogWithDepthTextureSettings
 {
     [Range(0, 5.0f)] public float fogDensity = 1.0f;
     public Color fogColor = Color.white;
@@ -79,7 +79,7 @@ public class FogWithDepthTextureSettings
     [Range(0, 20.0f)] public float fogEnd = 10.0f;
 }
 
-public class FogWithDepthTextureRenderPass : ScriptableRenderPass
+public class RefFogWithDepthTextureRenderPass : ScriptableRenderPass
 {
     private static readonly int fogDensityID = Shader.PropertyToID("_FogDensity");
     private static readonly int fogColorID = Shader.PropertyToID("_FogColor");
@@ -87,13 +87,13 @@ public class FogWithDepthTextureRenderPass : ScriptableRenderPass
     private static readonly int fogEndID = Shader.PropertyToID("_FogEnd");
     private const string textureName = "FogTempTexture";
 
-    private FogWithDepthTextureSettings defaultSettings;
+    private RefFogWithDepthTextureSettings defaultSettings;
     private Material material;
     private Material copyMaterial;
 
     private TextureDesc tempTextureDescriptor;
 
-    public FogWithDepthTextureRenderPass(Material material, Material copyMaterial, FogWithDepthTextureSettings defaultSettings)
+    public RefFogWithDepthTextureRenderPass(Material material, Material copyMaterial, RefFogWithDepthTextureSettings defaultSettings)
     {
         this.material = material;
         this.defaultSettings = defaultSettings;
@@ -104,7 +104,7 @@ public class FogWithDepthTextureRenderPass : ScriptableRenderPass
     {
         if (material == null) return;
 
-        var volumeComponent = VolumeManager.instance.stack.GetComponent<FogWithDepthTextureVolumeComponent>();
+        var volumeComponent = VolumeManager.instance.stack.GetComponent<RefFogWithDepthTextureVolumeComponent>();
         float fogDensity = volumeComponent.fogDensity.overrideState ? volumeComponent.fogDensity.value : defaultSettings.fogDensity;
         Color fogColor = volumeComponent.fogColor.overrideState ? volumeComponent.fogColor.value : defaultSettings.fogColor;
         float fogStart = volumeComponent.fogStart.overrideState ? volumeComponent.fogStart.value : defaultSettings.fogStart;
@@ -154,8 +154,8 @@ public class FogWithDepthTextureRenderPass : ScriptableRenderPass
 #endregion RenderPass
 
 #region VolumeComponent
-[Serializable, VolumeComponentMenu("My Post-processing/FogWithDepthTexture")]
-public class FogWithDepthTextureVolumeComponent : VolumeComponent
+[Serializable, VolumeComponentMenu("My Post-processing/RefFogWithDepthTexture")]
+public class RefFogWithDepthTextureVolumeComponent : VolumeComponent
 {
     public FloatParameter fogDensity = new FloatParameter(1f);
     public ColorParameter fogColor = new ColorParameter(Color.white);

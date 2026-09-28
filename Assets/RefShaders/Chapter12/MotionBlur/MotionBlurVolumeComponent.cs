@@ -2,8 +2,8 @@
 using System;
 using UnityEngine.Rendering;
 
-[Serializable, VolumeComponentMenu("My Post-processing/MotionBlur")]
-public class MotionBlurVolumeComponent : VolumeComponent
+[Serializable, VolumeComponentMenu("My Post-processing/RefMotionBlur")]
+public class RefMotionBlurVolumeComponent : VolumeComponent
 {
     public ClampedFloatParameter blurAmount = new ClampedFloatParameter(0.5f, 0f, 0.9f);
 }

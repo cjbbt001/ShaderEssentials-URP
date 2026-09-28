@@ -130,7 +130,7 @@ public class ColorAdjustmentPass : ScriptableRenderPass
 
 
 /// 出现在 Volume 的 Add Override 菜单里。它不负责画，只保存参数。
-[Serializable, VolumeComponentMenu("My Post-processing/Color Adjustment")]
+[Serializable, VolumeComponentMenu("Custom-Postprocessing/Color Adjustment")]
 public class ColorAdjustmentVolume : VolumeComponent, IPostProcessComponent
 {
     // 参数必须是 VolumeParameter，不能是普通 float。

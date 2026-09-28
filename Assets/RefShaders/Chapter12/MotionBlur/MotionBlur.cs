@@ -8,15 +8,15 @@ using UnityEngine.Rendering.Universal;
 #endregion
 
 #region RendererFeature
-public class MotionBlur : ScriptableRendererFeature
+public class RefMotionBlur : ScriptableRendererFeature
 {
-    [SerializeField] private MotionBlurSettings defaultSettings;
+    [SerializeField] private RefMotionBlurSettings defaultSettings;
     [SerializeField] private Shader shader;
     [SerializeField] private RenderPassEvent renderPassEvent = RenderPassEvent.BeforeRenderingPostProcessing;
 
     private Material material;
     private Material copyMaterial;
-    private MotionBlurRenderPass motionBlurRenderPass;
+    private RefMotionBlurRenderPass motionBlurRenderPass;
 
     public override void Create()
     {
@@ -33,7 +33,7 @@ public class MotionBlur : ScriptableRendererFeature
         else
             Debug.LogError("Failed to find Hidden/Universal/Blit shader!");
 
-        motionBlurRenderPass = new MotionBlurRenderPass(material, copyMaterial, defaultSettings);
+        motionBlurRenderPass = new RefMotionBlurRenderPass(material, copyMaterial, defaultSettings);
         motionBlurRenderPass.renderPassEvent = renderPassEvent;
     }
 
@@ -75,17 +75,17 @@ public class MotionBlur : ScriptableRendererFeature
 #region RenderPass
 
 [Serializable]
-public class MotionBlurSettings
+public class RefMotionBlurSettings
 {
     [Range(0, 0.9f)] public float blurAmount = 0.5f;
 }
 
-public class MotionBlurRenderPass : ScriptableRenderPass
+public class RefMotionBlurRenderPass : ScriptableRenderPass
 {
     private static readonly int blurAmountID = Shader.PropertyToID("_BlurAmount");
     private const string tempTextureName = "_MotionBlurTemp";
 
-    private MotionBlurSettings defaultSettings;
+    private RefMotionBlurSettings defaultSettings;
     private Material material;
     private Material copyMaterial;
 
@@ -93,7 +93,7 @@ public class MotionBlurRenderPass : ScriptableRenderPass
     private RTHandle m_HistoryTexture;
     private bool m_TextureInitialized = false;
 
-    public MotionBlurRenderPass(Material material, Material copyMaterial, MotionBlurSettings defaultSettings)
+    public RefMotionBlurRenderPass(Material material, Material copyMaterial, RefMotionBlurSettings defaultSettings)
     {
         this.material = material;
         this.defaultSettings = defaultSettings;
@@ -104,7 +104,7 @@ public class MotionBlurRenderPass : ScriptableRenderPass
     {
         if (material == null) return;
 
-        var volumeComponent = VolumeManager.instance.stack.GetComponent<MotionBlurVolumeComponent>();
+        var volumeComponent = VolumeManager.instance.stack.GetComponent<RefMotionBlurVolumeComponent>();
         float blurAmount = volumeComponent.blurAmount.overrideState ? volumeComponent.blurAmount.value : defaultSettings.blurAmount;
 
         material.SetFloat(blurAmountID, 1.0f - blurAmount);
@@ -146,12 +146,12 @@ public class MotionBlurRenderPass : ScriptableRenderPass
 
         if (material == null)
         {
-            Debug.LogError("MotionBlur material is null, skipping pass.");
+            Debug.LogError("RefMotionBlur material is null, skipping pass.");
             return;
         }
         if (copyMaterial == null)
         {
-            Debug.LogError("MotionBlur copyMaterial is null, skipping pass.");
+            Debug.LogError("RefMotionBlur copyMaterial is null, skipping pass.");
             return;
         }
 
