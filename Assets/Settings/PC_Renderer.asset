@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b57fa49e86064954eaa5a66dbe4ce2a4, type: 3}
   m_Name: FogWithDepthTexture
   m_EditorClassIdentifier: Assembly-CSharp::FogWithDepthTexture
-  m_Active: 1
+  m_Active: 0
   shader: {fileID: 4800000, guid: ea7a0327d248c8847a4429b7eac77c7b, type: 3}
   injectionPoint: 550
 --- !u!114 &5215913131483837138
