@@ -27,7 +27,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a03cb96ea22f4ad3b4281469f8f93624, type: 3}
   m_Name: ColorAdjustment
   m_EditorClassIdentifier: Assembly-CSharp::ColorAdjustment
-  m_Active: 1
+  m_Active: 0
   shader: {fileID: 4800000, guid: 2121966d476049a2a4039ee5b0b8b3d9, type: 3}
   injectionPoint: 550
 --- !u!114 &-5301074131166805210
@@ -124,7 +124,8 @@ MonoBehaviour:
   - {fileID: -807854039331875364}
   - {fileID: -976554991434198234}
   - {fileID: 1797236457099809232}
-  m_RendererFeatureMap: ad6b866f10d7b46c6d212cacaa170f9fd2b263a55ba562480d199de7cb512b94c68f97dfe2c373ec2643cafb29cd6eb6dc55420b08edc9f42613eec7689472f2d0d1d01a0911f118l
+  - {fileID: 6794805087765322374}
+  m_RendererFeatureMap: ad6b866f10d7b46c6d212cacaa170f9fd2b263a55ba562480d199de7cb512b94c68f97dfe2c373ec2643cafb29cd6eb6dc55420b08edc9f42613eec7689472f2d0d1d01a0911f11886da44163aff4b5el
   xrSystemData: {fileID: 0}
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   m_AssetVersion: 3
@@ -182,6 +183,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GaussianBlur
   m_Active: 0
   shader: {fileID: 4800000, guid: 2140099b8d0bd5d49a9b2c8b52fb0753, type: 3}
+  injectionPoint: 550
+--- !u!114 &6794805087765322374
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 175bb54e13dac4a45bd13f2a0a9e1686, type: 3}
+  m_Name: FogWithNoise
+  m_EditorClassIdentifier: Assembly-CSharp::FogWithNoise
+  m_Active: 0
+  shader: {fileID: 4800000, guid: 5245165d86020bb4ea5e203302535313, type: 3}
   injectionPoint: 550
 --- !u!114 &7833122117494664109
 MonoBehaviour:
