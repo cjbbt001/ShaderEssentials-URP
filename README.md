@@ -1,6 +1,4 @@
-# ShaderEssentials-URP
-
-《Unity Shader 入门精要》的 URP 实现。
+# 《Unity Shader 入门精要》 URP 实现
 
 - Unity `6000.6.2f1`
 - Universal Render Pipeline
